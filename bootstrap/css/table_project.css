@@ -1,0 +1,16 @@
+.table_wrap{
+    width: 95%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+.table-bordered{
+    
+}
+/*.table td,
+.table th {
+    padding: 5px;
+    border: 1px solid black;
+}
+.header{
+    text-align: center;
+}*/

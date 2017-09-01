@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Check Token</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script>
+            function funcBefore(){
+                $("#receive").text("Проверяем токен...");
+            }
+            function fucnSuccess(data){
+                $("#receive").text(data);
+            }
+            function funcError(jqXHR, exception){
+                $("#receive").text(jqXHR);
+            }
+            $(document).ready(function(){
+                $("#send").click(function(){
+                        $.ajax({
+                            type: "POST",
+                            url: "templates/token.php",
+                            data: ({a:$("#text1").val()}),
+                            beforeSend: funcBefore,
+                            success: fucnSuccess,
+                            error: funcError
+                        });
+                    }); 
+                });
+        </script>
+    </head>
+    <body>
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="sr-only">Укажите ваш токен</label>
+            <p class="form-control-static">Укажите ваш токен</p>
+        </div>
+        <div class="form-group mx-sm-3">
+            <label for="inputPassword2" class="sr-only">Введите ваш токен</label>
+            <input type="text" id="text1" value="" class="form-control">
+        </div>
+            <button type="button" class="btn btn-outline-primary" id="send">Проверить</button>
+            <form class="form-inline">
+                <div class="form-group">
+                    <div id="receive"></div>
+                    <div class="col"><a class="btn btn-outline-success" href="/" role="button" id="maines">На главную</a></div>         
+                </div>
+            </form>
+</form>
+
+</div>
+<style>
+p{
+    font-family: 'Times New Roman';
+    font-size: 13pt;
+}
+#receive{
+        width: 450px;
+    }
+#maines{
+    
+}
+#text1{
+    width:310px;
+}
+.container {
+    position: fixed; 
+    margin: 0px;
+    top: 38%;
+    left: 38%;
+    width: 625px;
+    height: 200px;
+    margin: -50px 0 0 -100px;
+    background: #f0f0f0;
+    border-radius: 25px;
+}
+.form-inline{
+    margin: 0px;
+    top: 37%;
+    left: 40%;
+    width: 600px;
+    height: 200px;
+}
+    </style>
+        <!--
+            <div>
+                <span>Укажите ваш токен</span>
+                <input type="text" id="text1" value="">
+                <button id="send">Проверить</button>
+                <div id="receive"></div>
+            </div>
+            <p></p>
+            <div><a href='/'>На главную</a></div> 
+        -->
+    </body>
+</html>
